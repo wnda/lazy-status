@@ -34,16 +34,16 @@
     <script>
       (function(){
         var a=document.getElementsByClassName("latency"),
-            b=a.length;
-        var myDelay = 1000;
-        var thisDelay = 1000;
-        var start = Date.now();
-        
+            b=a.length,
+            myDelay=1000,
+            thisDelay=1000,
+            start=Date.now();
         function startTimer() {    
             setTimeout(function() {
                 while(b--){
                   counter=0;
                   a[b].textContent=counter;
+                  console.warn(counter);
                   counter++;
                 }
                 // calculate the actual number of ms since last time
@@ -55,7 +55,6 @@
                 startTimer();
             }, thisDelay);
         }
-        
       }());
       function site_online(a,b){
         var x=document.getElementById(a),

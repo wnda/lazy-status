@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,shrink-to-fit=no">
-    <title>Status &middot; A. M. Douglas</title>
+    <title>A. M. Douglas &middot; Status</title>
+    <meta name="description" content="Status checker for websites maintained by A. M. Douglas">
     <link rel="icon" href="https://cdn.rawgit.com/wnda/pivot/master/favicon.ico">
     <style>
     @charset "UTF-8";
@@ -31,6 +32,31 @@
        @charset "UTF-8";@font-face{font-family:'SofiaPro';font-display:fallback;font-weight:400;font-style:normal;font-variant:normal;src:url("https://wnda.github.io/picuse-concept/SofiaProRegular.woff") format("woff")}@font-face{font-family:'SofiaPro';font-display:fallback;font-weight:700;font-style:normal;font-variant:normal;src:url("https://wnda.github.io/picuse-concept/SofiaProBold.woff") format("woff")}html,body,:root{font-family:'SofiaPro',Roboto,-apple-system,sans-serif}
     </style>
     <script>
+      (function(){
+        var a=document.getElementsByClassName("latency"),
+            b=a.length;
+        var myDelay = 1000;
+        var thisDelay = 1000;
+        var start = Date.now();
+        
+        function startTimer() {    
+            setTimeout(function() {
+                while(b--){
+                  counter=0;
+                  a[b].textContent=counter;
+                  counter++;
+                }
+                // calculate the actual number of ms since last time
+                var actual = Date.now() - start;
+                // subtract any extra ms from the delay for the next cycle
+                thisDelay = myDelay - (actual - myDelay);
+                start = Date.now();
+                // start the timer again
+                startTimer();
+            }, thisDelay);
+        }
+        
+      }());
       function site_online(a,b){
         var x=document.getElementById(a),
             now=new Date().getTime(),
@@ -79,7 +105,7 @@
       <div class="grid">
         <div class="cell cell-sm-7 cell-md-7 cell-lg-7">
           <h2>
-            <span class="item-title">indredouglas.com</span>
+            <span class="item-title">indredouglas.me</span>
           </h2>
           <p>
             <span class="message">Contacting server&hellip;</span>

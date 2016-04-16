@@ -32,9 +32,9 @@
        @charset "UTF-8";@font-face{font-family:'SofiaPro';font-display:fallback;font-weight:400;font-style:normal;font-variant:normal;src:url("https://wnda.github.io/picuse-concept/SofiaProRegular.woff") format("woff")}@font-face{font-family:'SofiaPro';font-display:fallback;font-weight:700;font-style:normal;font-variant:normal;src:url("https://wnda.github.io/picuse-concept/SofiaProBold.woff") format("woff")}html,body,:root{font-family:'SofiaPro',Roboto,-apple-system,sans-serif}
     </style>
     <script>
-      var counter=0;
+      var counter=0,timer;
       function startTimer(){
-        var timer=setTimeout(function(){
+        timer=setTimeout(function(){
           var a=document.getElementsByClassName("latency"),
               b=a.length;
             counter++;

@@ -33,26 +33,15 @@
     </style>
     <script>
       (function(){
-        var myDelay=1,
-            thisDelay=1,
-            start=Date.now(),
-            counter=0;
-        function startTimer() {
-            setTimeout(function() {
+        var counter=0;
+        function startTimer(){
+            setTimeout(function(){
               var a=document.getElementsByClassName("latency"),
                   b=a.length;
                 counter++;
-                while(b--){
-                  a[b].textContent=counter;
-                }
-                // calculate the actual number of ms since last time
-                var actual = Date.now() - start;
-                // subtract any extra ms from the delay for the next cycle
-                thisDelay = myDelay - (actual - myDelay);
-                start = Date.now();
-                // start the timer again
+                while(b--){a[b].textContent=counter;}
                 startTimer();
-            }, thisDelay);
+            },1);
         }
         startTimer();
       }());

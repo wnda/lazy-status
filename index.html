@@ -66,6 +66,8 @@
         document.getElementsByClassName("message")[b].textContent="The website is offline. Server is down for urgent maintenance.";
         clearTimeout(timer);
       }
+      window.site_online=site_online;
+      window.site_offline=site_offline;
     }());
     </script>
     <main class="page">

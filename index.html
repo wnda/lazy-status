@@ -39,9 +39,9 @@
         function startTimer() {    
             setTimeout(function() {
               var a=document.getElementsByClassName("latency"),
-                  b=a.length;
+                  b=a.length,
+                  counter=0;
                 while(b--){
-                  var counter=0;
                   a[b].textContent=counter;
                   console.warn(counter);
                   counter++;

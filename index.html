@@ -33,13 +33,13 @@
     </style>
     <script>
       (function(){
-        var a=document.getElementsByClassName("latency"),
-            b=a.length,
-            myDelay=1000,
+        var myDelay=1000,
             thisDelay=1000,
             start=Date.now();
         function startTimer() {    
             setTimeout(function() {
+              var a=document.getElementsByClassName("latency"),
+                  b=a.length;
                 while(b--){
                   var counter=0;
                   a[b].textContent=counter;

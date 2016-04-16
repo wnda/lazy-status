@@ -32,6 +32,7 @@
        @charset "UTF-8";@font-face{font-family:'SofiaPro';font-display:fallback;font-weight:400;font-style:normal;font-variant:normal;src:url("https://wnda.github.io/picuse-concept/SofiaProRegular.woff") format("woff")}@font-face{font-family:'SofiaPro';font-display:fallback;font-weight:700;font-style:normal;font-variant:normal;src:url("https://wnda.github.io/picuse-concept/SofiaProBold.woff") format("woff")}html,body,:root{font-family:'SofiaPro',Roboto,-apple-system,sans-serif}
     </style>
     <script>
+    (function(){
       var counter=0,timer;
       function startTimer(){
         timer=setTimeout(function(){
@@ -51,7 +52,7 @@
         x.onerror=null;
         x.onload=null;
         x.style.display="none";
-        document.getElementsByClassName("latency")[b].textContent="Network latency: "+page_load_time+"ms";
+        document.getElementsByClassName("latency")[b].textContent=page_load_time;
         document.getElementsByClassName("status-online")[b].style.display="inline-block";
         document.getElementsByClassName("message")[b].textContent="The website is online. Server is fully operational.";
         clearTimeout(timer);
@@ -65,6 +66,7 @@
         document.getElementsByClassName("message")[b].textContent="The website is offline. Server is down for urgent maintenance.";
         clearTimeout(timer);
       }
+    }());
     </script>
     <main class="page">
       <div class="grid">
@@ -79,7 +81,7 @@
             <span class="message">Contacting server&hellip;</span>
           </p>
           <p>
-            <span class="latency"></span>
+            Network latency: <span class="latency"></span> ms
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
@@ -100,7 +102,7 @@
             <span class="message">Contacting server&hellip;</span>
           </p>
           <p>
-            <span class="latency"></span>
+            Network latency: <span class="latency"></span> ms
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
@@ -121,7 +123,7 @@
             <span class="message">Contacting server&hellip;</span>
           </p>
           <p>
-            <span class="latency"></span>
+            Network latency: <span class="latency"></span> ms
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
@@ -142,7 +144,7 @@
             <span class="message">Contacting server&hellip;</span>
           </p>
           <p>
-            <span class="latency"></span>
+            Network latency: <span class="latency"></span> ms
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">

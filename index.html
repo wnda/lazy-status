@@ -30,7 +30,27 @@
     <style scoped>
        @charset "UTF-8";@font-face{font-family:'SofiaPro';font-display:fallback;font-weight:400;font-style:normal;font-variant:normal;src:url("https://wnda.github.io/picuse-concept/SofiaProRegular.woff") format("woff")}@font-face{font-family:'SofiaPro';font-display:fallback;font-weight:700;font-style:normal;font-variant:normal;src:url("https://wnda.github.io/picuse-concept/SofiaProBold.woff") format("woff")}html,body,:root{font-family:'SofiaPro',Roboto,-apple-system,sans-serif}
     </style>
-    <script>function site_online(a,b){var x=document.getElementById(a);x.onerror=null;x.onload=null;x.style.display="none";document.getElementsByClassName("status-online")[b].style.display="inline-block";document.getElementsByClassName("message")[b].textContent="The website is online. Server is fully operational.";}function site_offline(a,b){var x=document.getElementById(a);x.onerror=null;x.onload=null;x.style.display="none";document.getElementsByClassName("status-offline")[b].style.display="inline-block";document.getElementsByClassName("message")[b].textContent="The website is offline. Server is down for urgent maintenance.";}</script>
+    <script>
+      function site_online(a,b){
+        var x=document.getElementById(a),
+            now=new Date().getTime(),
+            page_load_time=now - performance.timing.navigationStart;
+        x.onerror=null;
+        x.onload=null;
+        x.style.display="none";
+        document.getElementsByClassName("latency")[b].textContent="Network latency: "+page_load_time+"ms";
+        document.getElementsByClassName("status-online")[b].style.display="inline-block";
+        document.getElementsByClassName("message")[b].textContent="The website is online. Server is fully operational.";
+      }
+      function site_offline(a,b){
+        var x=document.getElementById(a);
+        x.onerror=null;
+        x.onload=null;
+        x.style.display="none";
+        document.getElementsByClassName("status-offline")[b].style.display="inline-block";
+        document.getElementsByClassName("message")[b].textContent="The website is offline. Server is down for urgent maintenance.";
+      }
+    </script>
     <main class="page">
       <div class="grid">
         <div class="cell cell-sm-12 cell-md-12 cell-lg-12">
@@ -42,6 +62,9 @@
           </h2>
           <p>
             <span class="message">Contacting server&hellip;</span>
+          </p>
+          <p>
+            <span class="latency"></span>
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
@@ -61,6 +84,9 @@
           <p>
             <span class="message">Contacting server&hellip;</span>
           </p>
+          <p>
+            <span class="latency"></span>
+          </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
           <img src="https://indredouglas.me/assets/img/iWrVv3m.gif" id="ijd" alt="Loader" onload="site_online(this.id,1);" onerror="site_offline(this.id,1);">
@@ -79,6 +105,9 @@
           <p>
             <span class="message">Contacting server&hellip;</span>
           </p>
+          <p>
+            <span class="latency"></span>
+          </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
           <img src="http://robomonkey.org/uploads/logo.png" id="hil" alt="Loader" onload="site_online(this.id,2);" onerror="site_offline(this.id,2);">
@@ -96,6 +125,9 @@
           </h2>
           <p>
             <span class="message">Contacting server&hellip;</span>
+          </p>
+          <p>
+            <span class="latency"></span>
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">

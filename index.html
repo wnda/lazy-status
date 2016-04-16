@@ -35,9 +35,9 @@
       (function(){
         var myDelay=1000,
             thisDelay=1000,
-            start=Date.now(),
-            counter=0;
-        function startTimer() {    
+            start=Date.now();
+        function startTimer() {
+          var counter=0;
             setTimeout(function(counter) {
               var a=document.getElementsByClassName("latency"),
                   b=a.length;

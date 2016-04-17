@@ -37,18 +37,7 @@
       html,body,:root{font-family:'FaktPro',Roboto,-apple-system,sans-serif}
     </style>
     <script>
-    (function(){
-      var counter=0,timer;
-      function startTimer(){
-        timer=setTimeout(function(){
-          var a=document.getElementsByClassName("latency"),
-              b=a.length;
-            counter++;
-            while(b--){a[b].textContent=counter;}
-            startTimer();
-        },1);
-      }
-      startTimer();
+    //(function(){var counter=0,timer;function startTimer(){timer=setTimeout(function(){var a=document.getElementsByClassName("latency"),b=a.length;counter++;while(b--){a[b].textContent=counter;}startTimer();},1);}startTimer();
       
       function site_online(a,b){
         var x=document.getElementById(a),
@@ -73,7 +62,7 @@
       }
       window.site_online=site_online;
       window.site_offline=site_offline;
-    }());
+    //}());
     </script>
     <main class="page">
       <div class="grid">

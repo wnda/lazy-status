@@ -31,13 +31,12 @@
   <body>
     <style scoped>
       @charset "UTF-8";
-      @font-face{font-family:"GTW";src:url(https://cdn.rawgit.com/wnda/morrigan/master/assets/fonts/gt-walsheim-regular.woff) format('woff');font-weight:400}
-      @font-face{font-family:"GTW";src:url(https://cdn.rawgit.com/wnda/morrigan/master/assets/fonts/gt-walsheim-bold.woff) format('woff');font-weight:700}
+      @font-face{font-family:"GTW";src:url(https://cdn.rawgit.com/wnda/morrigan/master/assets/fonts/gt-walsheim-regular.woff) format('woff');font-weight:400;font-style:normal;font-variant:normal;font-display:optional}
+      @font-face{font-family:"GTW";src:url(https://cdn.rawgit.com/wnda/morrigan/master/assets/fonts/gt-walsheim-bold.woff) format('woff');font-weight:700;font-style:normal;font-variant:normal;font-display:optional}
       html,body,:root{font-family:"GTW",Roboto,-apple-system,sans-serif}
     </style>
     <script>
-    (function(){var counter=0,timer;function startTimer(){timer=setTimeout(function(){var a=document.getElementsByClassName("latency"),b=a.length;counter++;while(b--){a[b].textContent=counter;}startTimer();},1);}startTimer();
-      
+    (function(){
       function site_online(a,b){
         var x=document.getElementById(a),
             now=new Date().getTime(),
@@ -45,10 +44,9 @@
         x.onerror=null;
         x.onload=null;
         x.style.display="none";
-        //document.getElementsByClassName("latency")[b].textContent=page_load_time;
+        document.getElementsByClassName("latency")[b].textContent=page_load_time;
         document.getElementsByClassName("status-online")[b].style.display="inline-block";
         document.getElementsByClassName("message")[b].textContent="The website is online. Server is fully operational.";
-        clearTimeout(timer);
       }
       function site_offline(a,b){
         var x=document.getElementById(a);
@@ -57,7 +55,6 @@
         x.style.display="none";
         document.getElementsByClassName("status-offline")[b].style.display="inline-block";
         document.getElementsByClassName("message")[b].textContent="The website is offline. Server is down for urgent maintenance.";
-        clearTimeout(timer);
       }
       window.site_online=site_online;
       window.site_offline=site_offline;

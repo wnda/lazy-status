@@ -36,7 +36,7 @@
       html,body,:root{font-family:"GTW",Roboto,-apple-system,sans-serif}
     </style>
     <script>
-    //(function(){var counter=0,timer;function startTimer(){timer=setTimeout(function(){var a=document.getElementsByClassName("latency"),b=a.length;counter++;while(b--){a[b].textContent=counter;}startTimer();},1);}startTimer();
+    (function(){var counter=0,timer;function startTimer(){timer=setTimeout(function(){var a=document.getElementsByClassName("latency"),b=a.length;counter++;while(b--){a[b].textContent=counter;}startTimer();},1);}startTimer();
       
       function site_online(a,b){
         var x=document.getElementById(a),
@@ -45,7 +45,7 @@
         x.onerror=null;
         x.onload=null;
         x.style.display="none";
-        document.getElementsByClassName("latency")[b].textContent=page_load_time;
+        //document.getElementsByClassName("latency")[b].textContent=page_load_time;
         document.getElementsByClassName("status-online")[b].style.display="inline-block";
         document.getElementsByClassName("message")[b].textContent="The website is online. Server is fully operational.";
         clearTimeout(timer);

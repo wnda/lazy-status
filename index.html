@@ -43,7 +43,7 @@
           lm.textContent=counter;
           console.log(counter);
           counter++;
-          countSeconds();
+          countSeconds(lm,counter);
         },1);
       }
       
@@ -51,7 +51,8 @@
           l=latencies.length,
           m=0;
       for(;l>m;m++){
-        countSeconds(latencies[m],0);
+        var lm=latencies[m];
+        countSeconds(lm,0);
       }
       
       function site_online(a,b){

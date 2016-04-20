@@ -38,13 +38,6 @@
     <script>
     (function(){
       "use strict";
-      var latencies=document.querySelectorAll(".latency"),
-          l=latencies.length,
-          m=0;
-      for(;l>m;m++){
-        countSeconds(l[m],0);
-      }
-      
       function countSeconds(lm,counter){
         setTimeout(function(){
           lm.textContent=counter;
@@ -52,6 +45,13 @@
           counter++;
           countSeconds();
         },1);
+      }
+      
+      var latencies=document.querySelectorAll(".latency"),
+          l=latencies.length,
+          m=0;
+      for(;l>m;m++){
+        countSeconds(latencies[m],0);
       }
       
       function site_online(a,b){

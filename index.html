@@ -37,7 +37,8 @@
     </style>
     <script>
     (function(){
-      var latencies=document.getElementsByClassName("latency"),
+      "use strict";
+      var latencies=document.querySelectorAll(".latency"),
           l=latencies.length,
           m=0;
       for(;l>m;m++){
@@ -60,9 +61,9 @@
         x.onerror=null;
         x.onload=null;
         x.style.display="none";
-        document.getElementsByClassName("latency")[b].textContent=page_load_time;
-        document.getElementsByClassName("status-online")[b].style.display="inline-block";
-        document.getElementsByClassName("message")[b].textContent="The website is online. Server is fully operational.";
+        document.querySelectorAll(".latency")[b].textContent=page_load_time;
+        document.querySelectorAll(".status-online")[b].style.display="inline-block";
+        document.querySelectorAll(".message")[b].textContent="The website is online. Server is fully operational.";
         clearTimeout(countSeconds);
       }
       window.site_online=site_online;
@@ -71,8 +72,8 @@
         x.onerror=null;
         x.onload=null;
         x.style.display="none";
-        document.getElementsByClassName("status-offline")[b].style.display="inline-block";
-        document.getElementsByClassName("message")[b].textContent="The website is offline. Server is down for urgent maintenance.";
+        document.querySelectorAll(".status-offline")[b].style.display="inline-block";
+        document.querySelectorAll(".message")[b].textContent="The website is offline. Server is down for urgent maintenance.";
         clearTimeout(countSeconds);
         
       }

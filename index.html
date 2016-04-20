@@ -38,24 +38,6 @@
     <script>
     (function(){
       "use strict";
-      var requestAnimationFrame = window.requestAnimationFrame||window.mozRequestAnimationFrame||window.webkitRequestAnimationFrame || window.msRequestAnimationFrame,
-          cancelAnimationFrame  = window.cancelAnimationFrame||window.mozCancelAnimationFrame;
-      
-      var start = Date.now();
-      var myReq;
-      var a=document.querySelectorAll(".latency"),
-          b=a.length,
-          z=0;
-      
-      function step(timestamp) {
-        var progress = timestamp - start;
-        for(;b>z;z++){a[z].textContent=progress;}
-        if (progress < 2000) {
-          myReq = requestAnimationFrame(step);
-        }
-      }
-      myReq = requestAnimationFrame(step);
-      
       function site_online(a,b){
         var x=document.getElementById(a),
             now=new Date().getTime(),
@@ -66,7 +48,6 @@
         document.querySelectorAll(".latency")[b].textContent=load_time;
         document.querySelectorAll(".status-online")[b].style.display="inline-block";
         document.querySelectorAll(".message")[b].textContent="The website is online. Server is fully operational.";
-        window.cancelAnimationFrame(myReq);
       }
       window.site_online=site_online;
       function site_offline(a,b){
@@ -76,7 +57,6 @@
         x.style.display="none";
         document.querySelectorAll(".status-offline")[b].style.display="inline-block";
         document.querySelectorAll(".message")[b].textContent="The website is offline. Server is down for urgent maintenance.";
-        window.cancelAnimationFrame(myReq);
       }
       window.site_offline=site_offline;
     }());

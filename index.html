@@ -47,6 +47,7 @@
       function countSeconds(lm,counter){
         setTimeout(function(){
           lm.textContent=counter;
+          console.log(counter);
           counter++;
           countSeconds();
         },1);

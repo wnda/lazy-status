@@ -56,12 +56,37 @@
         document.getElementsByClassName("status-offline")[b].style.display="inline-block";
         document.getElementsByClassName("message")[b].textContent="The website is offline. Server is down for urgent maintenance.";
       }
-      window.site_online=site_online;
-      window.site_offline=site_offline;
+    
+      var x = document.getElementsByTagName("section"),y=x.length,z=0;
+      for(;y>z;z++){
+        var w=document.createElement("div"),
+            g=document.createElement("div"),
+            cbrkr=new Date().getTime();
+        w.className="cell cell-sm-5 cell-md-5 cell-lg-5";
+        g.className="cell cell-sm-12 cell-md-12 cell-lg-12";
+        g.innerHTML="<hr>";
+        switch(z){
+          case 0:
+            w.innerHTML='<img src="https://amdouglas.com/assets/gif/iWrVv3m.gif?v='+cbrkr+'" id="amd" alt="Loading" onload="site_online(this.id,0);" onerror="site_offline(this.id,0);"><span class="status-online"></span><span class="status-offline"></span>';
+          break;
+          case 1:
+            w.innerHTML='<img src="https://indredouglas.me/assets/img/iWrVv3m.gif?v='+cbrkr+'" id="ijd" alt="Loading" onload="site_online(this.id,0);" onerror="site_offline(this.id,0);"><span class="status-online"></span><span class="status-offline"></span>';
+          break;
+          case 2:
+            w.innerHTML='<img src="http://robomonkey.org/uploads/logo.png?v='+cbrkr+'" id="rob" alt="Loading" onload="site_online(this.id,0);" onerror="site_offline(this.id,0);"><span class="status-online"></span><span class="status-offline"></span>';
+          break;
+          case 3:
+            w.innerHTML='<img src="http://www.hil.org.uk/wp-content/uploads/2016/01/base.gif/?v='+cbrkr+'" id="hil" alt="Loading" onload="site_online(this.id,0);" onerror="site_offline(this.id,0);"><span class="status-online"></span><span class="status-offline"></span>';
+          break;
+          default:
+        }
+        x[z].append(w);
+        x[z].append(g);
+      }
     }());
     </script>
     <main class="page">
-      <div class="grid">
+      <section class="grid">
         <div class="cell cell-sm-12 cell-md-12 cell-lg-12">
           <h1 class="site-title">A. M. Douglas &middot; Status</h1>
         </div>
@@ -76,16 +101,9 @@
             Network latency: <span class="latency"></span> ms
           </p>
         </div>
-        <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
-          <img src="//amdouglas.com/assets/gif/iWrVv3m.gif" id="amd" alt="Loader" onload="site_online(this.id,0);" onerror="site_offline(this.id,0);">
-          <span class="status-online"></span>
-          <span class="status-offline"></span>
-        </div>
-        <div class="cell cell-sm-12 cell-md-12 cell-lg-12">
-          <hr>
-        </div>
-      </div>
-      <div class="grid">
+        
+      </section>
+      <section class="grid">
         <div class="cell cell-sm-7 cell-md-7 cell-lg-7">
           <h2>
             <span class="item-title">indredouglas.me</span>
@@ -97,16 +115,9 @@
             Network latency: <span class="latency"></span> ms
           </p>
         </div>
-        <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
-          <img src="//indredouglas.me/assets/img/iWrVv3m.gif" id="ijd" alt="Loader" onload="site_online(this.id,1);" onerror="site_offline(this.id,1);">
-          <span class="status-online"></span>
-          <span class="status-offline"></span>
-        </div>
-        <div class="cell cell-sm-12 cell-md-12 cell-lg-12">
-          <hr>
-        </div>
-      </div>
-      <div class="grid">
+        
+      </section>
+      <section class="grid">
         <div class="cell cell-sm-7 cell-md-7 cell-lg-7">
           <h2>
             <span class="item-title">robomonkey.org</span>
@@ -118,16 +129,9 @@
             Network latency: <span class="latency"></span> ms
           </p>
         </div>
-        <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
-          <img src="//robomonkey.org/uploads/logo.png" id="rob" alt="Loader" onload="site_online(this.id,2);" onerror="site_offline(this.id,2);">
-          <span class="status-online"></span>
-          <span class="status-offline"></span>
-        </div>
-        <div class="cell cell-sm-12 cell-md-12 cell-lg-12">
-          <hr>
-        </div>
-      </div>
-      <div class="grid">
+       
+      </section>
+      <section class="grid">
         <div class="cell cell-sm-7 cell-md-7 cell-lg-7">
           <h2>
             <span class="item-title">hil.org.uk</span>
@@ -139,12 +143,8 @@
             Network latency: <span class="latency"></span> ms
           </p>
         </div>
-        <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
-          <img src="//www.hil.org.uk/wp-content/uploads/2016/01/base.gif" id="hil" alt="Loader" onload="site_online(this.id,3);" onerror="site_offline(this.id,3);">
-          <span class="status-online"></span>
-          <span class="status-offline"></span>
-        </div>
-      </div>
+        
+      </section>
     </main>
   </body>
 </html>

@@ -48,6 +48,7 @@
         document.getElementsByClassName("status-online")[b].style.display="inline-block";
         document.getElementsByClassName("message")[b].textContent="The website is online. Server is fully operational.";
       }
+      window.site_online=site_online;
       function site_offline(a,b){
         var x=document.getElementById(a);
         x.onerror=null;
@@ -56,7 +57,7 @@
         document.getElementsByClassName("status-offline")[b].style.display="inline-block";
         document.getElementsByClassName("message")[b].textContent="The website is offline. Server is down for urgent maintenance.";
       }
-    
+      window.site_offline=site_offline;
     }());
     </script>
     <main class="page">

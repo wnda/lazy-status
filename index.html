@@ -37,6 +37,21 @@
     </style>
     <script>
     (function(){
+      var latencies=document.getElementsByClassName("latency"),
+          l=latencies.length,
+          m=0;
+      for(;l>m;m++){
+        countSeconds(l[m],0);
+      }
+      
+      function countSeconds(lm,counter){
+        setTimeout(function(){
+          lm.textContent=counter;
+          counter++;
+          countSeconds();
+        },1);
+      }
+      
       function site_online(a,b){
         var x=document.getElementById(a),
             now=new Date().getTime(),
@@ -47,6 +62,7 @@
         document.getElementsByClassName("latency")[b].textContent=page_load_time;
         document.getElementsByClassName("status-online")[b].style.display="inline-block";
         document.getElementsByClassName("message")[b].textContent="The website is online. Server is fully operational.";
+        clearTimeout(countSeconds);
       }
       window.site_online=site_online;
       function site_offline(a,b){
@@ -56,6 +72,8 @@
         x.style.display="none";
         document.getElementsByClassName("status-offline")[b].style.display="inline-block";
         document.getElementsByClassName("message")[b].textContent="The website is offline. Server is down for urgent maintenance.";
+        clearTimeout(countSeconds);
+        
       }
       window.site_offline=site_offline;
     }());

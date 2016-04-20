@@ -46,14 +46,18 @@
           countSeconds(lm,counter);
         },1);
       }
-      
-      var latencies=document.querySelectorAll(".latency"),
-          l=latencies.length,
-          m=0;
-      for(;l>m;m++){
-        var lm=latencies[m];
-        countSeconds(lm,0);
+      var counter=0,timer;
+      function startTimer(){
+        timer=setTimeout(function(){
+          var a=document.querySelectorAll(".latency"),
+              b=a.length,
+              z=0;
+            counter++;
+            for(;b>z;z++){a[z].textContent=counter;}
+            startTimer();
+        },1);
       }
+      startTimer();
       
       function site_online(a,b){
         var x=document.getElementById(a),
@@ -65,7 +69,7 @@
         document.querySelectorAll(".latency")[b].textContent=page_load_time;
         document.querySelectorAll(".status-online")[b].style.display="inline-block";
         document.querySelectorAll(".message")[b].textContent="The website is online. Server is fully operational.";
-        clearTimeout(countSeconds);
+        clearTimeout(timer);
       }
       window.site_online=site_online;
       function site_offline(a,b){
@@ -75,8 +79,7 @@
         x.style.display="none";
         document.querySelectorAll(".status-offline")[b].style.display="inline-block";
         document.querySelectorAll(".message")[b].textContent="The website is offline. Server is down for urgent maintenance.";
-        clearTimeout(countSeconds);
-        
+        clearTimeout(timer);
       }
       window.site_offline=site_offline;
     }());

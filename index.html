@@ -53,7 +53,7 @@
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
-          <img data-src="https://amdouglas.com/assets/gif/iWrVv3m.gif?0i2re3id" id="amd" alt="Loader">
+          <img src="https://amdouglas.com/assets/gif/iWrVv3m.gif?0i2re3id" id="amd" alt="Loader">
           <span class="status-online"></span>
           <span class="status-offline"></span>
         </div>
@@ -74,7 +74,7 @@
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
-          <img data-src="https://indredouglas.me/assets/img/iWrVv3m.gif?i0e2h4f8355" id="ijd" alt="Loader">
+          <img src="https://indredouglas.me/assets/img/iWrVv3m.gif?i0e2h4f8355" id="ijd" alt="Loader">
           <span class="status-online"></span>
           <span class="status-offline"></span>
         </div>
@@ -95,7 +95,7 @@
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
-          <img data-src="http://robomonkey.org/uploads/logo.png?iwnd83u23" id="rob" alt="Loader">
+          <img src="http://robomonkey.org/uploads/logo.png?iwnd83u23" id="rob" alt="Loader">
           <span class="status-online"></span>
           <span class="status-offline"></span>
         </div>
@@ -116,7 +116,7 @@
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
-          <img data-src="http://www.hil.org.uk/wp-content/uploads/2016/01/base.gif?8j9eu9r423a" id="hil" alt="Loader">
+          <img src="http://www.hil.org.uk/wp-content/uploads/2016/01/base.gif?8j9eu9r423a" id="hil" alt="Loader">
           <span class="status-online"></span>
           <span class="status-offline"></span>
         </div>
@@ -172,8 +172,8 @@
       {
         imgs[i] [listenFor] ( strEvent( 'load' ) , siteOnline( imgs[i].id, i ) );
         imgs[i] [listenFor] ( strEvent( 'error' ) , siteOffline( imgs[i].id, i ) );
-        imgs[i].src = imgs[i].getAttribute( 'data-src' );
-        imgs[i].removeAttribute( 'data-src' );
+        // imgs[i].src = imgs[i].getAttribute( 'data-src' );
+        // imgs[i].removeAttribute( 'data-src' );
       }
     }());
     </script>

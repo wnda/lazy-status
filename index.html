@@ -57,7 +57,7 @@
         x.style.display = 'none';
         
         identifiers[b].style.transitionDelay = load_time + "ms";
-        identifiers[b].className = "identifier-online";
+        identifiers[b].className = "cell cell-top identifier-online";
         latencies[b].textContent = load_time;
         stat.className = 'status-online';
         msgs[b].textContent = 'The website is online. Server is fully operational.';
@@ -74,8 +74,8 @@
         x.onload = null;  
         x.style.display = 'none';
         
-        identifiers[b].className = "identifier-offline";
         identifiers[b].style.transitionDelay = "200ms";
+        identifiers[b].className = "cell cell-top identifier-offline";
         stat.className = 'status-offline';
         msgs[b].textContent = 'The website is offline. Server is down for urgent maintenance.';
       }

@@ -45,21 +45,12 @@
           msgs      = document.querySelectorAll('.message'),
           i         = imgs.length,
           j         = 0,
-          listenFor = ( 'addEventListener' in window ) ? 'addEventListener' :
-                              ( ( 'attachEvent' in window ) ? 'attachEvent' : null ),
           siteOnline = function(a,b){
             var x = document.getElementById( a ),
                 now = new Date().getTime(),
                 load_time = now - performance.timing.navigationStart;
-            if( 'addEventListener' in window ){
-              x.removeEventListener( 'load', siteOnline );
-              x.removeEventListener( 'error', siteOffline );
-            }
-            else
-            {
-              x.onerror = null;
-              x.onload = null;  
-            }
+            x.onerror = null;
+            x.onload = null;  
             x.style.display = 'none';
             latencies[b].textContent = load_time;
             stat_ons[b].style.display = "inline-block";
@@ -67,25 +58,17 @@
           },
           siteOffline = function(a,b){
             var x = document.getElementById(a);
-            if( 'addEventListener' in window ){
-              x.removeEventListener( 'load', siteOnline );
-              x.removeEventListener( 'error', siteOffline );
-            }
-            else
-            {
-              x.onerror = null;
-              x.onload = null;  
-            }
+            x.onerror = null;
+            x.onload = null;  
             x.style.display = "none";
             stat_offs[b].style.display = "inline-block";
             msgs[b].textContent = "The website is offline. Server is down for urgent maintenance.";
-          },
-          strEvent  = function(etype){return (('addEventListener'in window)?etype:'on'+etype);};
+          };
               
       for(;i>j;j++)
       {
-        imgs[j] [listenFor] ( strEvent( 'load' ) , siteOnline( imgs[j].id, j ), false );
-        imgs[j] [listenFor] ( strEvent( 'error' ) , siteOffline( imgs[j].id, j ), false );
+        imgs[j].onload = siteOnline( imgs[j].id, j );
+        imgs[j].onerror = siteOffline( imgs[j].id, j );
         // imgs[i].src = imgs[i].getAttribute( 'data-src' );
         // imgs[i].removeAttribute( 'data-src' );
       }

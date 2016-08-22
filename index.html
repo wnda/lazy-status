@@ -38,14 +38,12 @@
     <script>
     (function(){
       "use strict";
-      
-      var imgs      = document.getElementsByTagName( 'img' ),
+          
+      window.siteOnline = function(a,b){
+        var imgs      = document.getElementsByTagName( 'img' ),
           latencies = document.querySelectorAll('.latency'),
           stat_ons  = document.querySelectorAll('.status-online'),
-          stat_offs = document.querySelectorAll('.status-offline'),
           msgs      = document.querySelectorAll('.message');
-          
-      function siteOnline(a,b){
         var x = document.getElementById( a ),
             now = new Date().getTime(),
             load_time = now - performance.timing.navigationStart;
@@ -55,9 +53,12 @@
         latencies[b].textContent = load_time;
         stat_ons[b].style.display = "inline-block";
         msgs[b].textContent = "The website is online. Server is fully operational.";
-      }
+      };
       
-      function siteOffline(a,b){
+      window.siteOffline=function(a,b){
+        var imgs      = document.getElementsByTagName( 'img' ),
+          stat_offs = document.querySelectorAll('.status-offline'),
+          msgs      = document.querySelectorAll('.message');
         var x = document.getElementById( a );
         x.onerror = null;
         x.onload = null;  
@@ -65,8 +66,6 @@
         stat_offs[b].style.display = "inline-block";
         msgs[b].textContent = "The website is offline. Server is down for urgent maintenance.";
       }
-      window.siteOnline=siteOnline;
-      window.siteOffline=siteOffline;
     }());
     </script>
     <main class="page">

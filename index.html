@@ -7,7 +7,6 @@
     <meta name="description" content="Status checker for websites maintained by A. M. Douglas">
     <link rel="icon" href="https://cdn.rawgit.com/wnda/pivot/master/favicon.ico">
     <style>
-    @charset "UTF-8";
       html,body,:root{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-size:100%;line-height:1.27;font-family:Roboto,Helmet,Freesans,sans-serif;overflow-x:hidden;background:hsl(0,0%,100%);color:hsl(240,60%,6.9%);text-rendering:optimizeSpeed;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;*zoom:1}
       *,:before,:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;border:0;vertical-align:baseline;-webkit-tap-highlight-color:transparent}
       details,main,summary{display:block}
@@ -128,50 +127,51 @@
       var imgs      = document.getElementsByTagName( 'img' ),
           latencies = document.querySelectorAll('.latency'),
           stat_ons  = document.querySelectorAll('.status-online'),
-          stat_offs = document.querySelectorAll(".status-offline"),
+          stat_offs = document.querySelectorAll('.status-offline'),
           msgs      = document.querySelectorAll('.message'),
           i         = imgs.length,
+          j         = 0,
           listenFor = ( 'addEventListener' in window ) ? 'addEventListener' :
                               ( ( 'attachEvent' in window ) ? 'attachEvent' : null ),
           siteOnline = function(a,b){
-            var x=document.getElementById(a),
-                now=new Date().getTime(),
-                load_time=now - performance.timing.navigationStart;
+            var x = document.getElementById( a ),
+                now = new Date().getTime(),
+                load_time = now - performance.timing.navigationStart;
             if( 'addEventListener' in window ){
-              x.removeEventListener('load',siteOnline);
-              x.removeEventListener('error',siteOffline);
+              x.removeEventListener( 'load', siteOnline );
+              x.removeEventListener( 'error', siteOffline );
             }
             else
             {
               x.onerror=null;
               x.onload=null;  
             }
-            x.style.display='none';
-            latencies[b].textContent=load_time;
-            stat_ons[b].style.display="inline-block";
-            msgs[b].textContent="The website is online. Server is fully operational.";
+            x.style.display = 'none';
+            latencies[b].textContent = load_time;
+            stat_ons[b].style.display = "inline-block";
+            msgs[b].textContent = "The website is online. Server is fully operational.";
           },
           siteOffline = function(a,b){
             var x=document.getElementById(a);
             if( 'addEventListener' in window ){
-              x.removeEventListener('load',siteOnline);
-              x.removeEventListener('error',siteOffline);
+              x.removeEventListener( 'load', siteOnline );
+              x.removeEventListener( 'error', siteOffline );
             }
             else
             {
-              x.onerror=null;
-              x.onload=null;  
+              x.onerror = null;
+              x.onload = null;  
             }
-            x.style.display="none";
-            stat_offs[b].style.display="inline-block";
-            msgs[b].textContent="The website is offline. Server is down for urgent maintenance.";
+            x.style.display = "none";
+            stat_offs[b].style.display = "inline-block";
+            msgs[b].textContent = "The website is offline. Server is down for urgent maintenance.";
           },
           strEvent  = function(etype){return (('addEventListener'in window)?etype:'on'+etype);};
               
-      while(i--)
+      for(;i>j;j++)
       {
-        imgs[i] [listenFor] ( strEvent( 'load' ) , siteOnline( imgs[i].id, i ) );
-        imgs[i] [listenFor] ( strEvent( 'error' ) , siteOffline( imgs[i].id, i ) );
+        imgs[j] [listenFor] ( strEvent( 'load' ) , siteOnline( imgs[j].id, j ), false );
+        imgs[j] [listenFor] ( strEvent( 'error' ) , siteOffline( imgs[j].id, j ), false );
         // imgs[i].src = imgs[i].getAttribute( 'data-src' );
         // imgs[i].removeAttribute( 'data-src' );
       }

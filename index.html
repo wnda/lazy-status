@@ -30,35 +30,64 @@
   </head>
   <body>
     <style scoped>
-      @charset "UTF-8";
-      @font-face{font-family:"GTW";src:url(https://cdn.rawgit.com/wnda/morrigan/master/assets/fonts/gt-walsheim-regular.woff) format('woff');font-weight:400;font-style:normal;font-variant:normal;font-display:optional}
-      @font-face{font-family:"GTW";src:url(https://cdn.rawgit.com/wnda/morrigan/master/assets/fonts/gt-walsheim-bold.woff) format('woff');font-weight:700;font-style:normal;font-variant:normal;font-display:optional}
-      html,body,:root{font-family:"GTW",Roboto,-apple-system,sans-serif}
+      @font-face{font-family:'SofiaPro';font-display:fallback;font-style:normal;font-weight:700;src:url(https://amdouglas.com/assets/fonts/SofiaProBold.woff2) format('woff2'),url(https://amdouglas.com/assets/fonts/SofiaProBold.woff) format('woff')}html,body,:root{font-family:'SofiaPro',-apple-system,Roboto,Arial,Helmet,Freesans,sans-serif}
     </style>
     <script>
     (function(){
       "use strict";
-      function site_online(a,b){
-        var x=document.getElementById(a),
-            now=new Date().getTime(),
-            load_time=now - performance.timing.navigationStart;
-        x.onerror=null;
-        x.onload=null;
-        x.style.display="none";
-        document.querySelectorAll(".latency")[b].textContent=load_time;
-        document.querySelectorAll(".status-online")[b].style.display="inline-block";
-        document.querySelectorAll(".message")[b].textContent="The website is online. Server is fully operational.";
+      var imgs      = document.getElementsByTagName( 'img' ),
+          latencies = document.querySelectorAll('.latency'),
+          stat_ons  = document.querySelectorAll('.status-online'),
+          stat_offs = document.querySelectorAll(".status-offline"),
+          msgs      = document.querySelectorAll('.message'),
+          i         = imgs.length,
+          listenFor = ( 'addEventListener' in window ) ? 'addEventListener' :
+                              ( ( 'attachEvent' in window ) ? 'attachEvent' : null ),
+          siteOnline = function(a,b){
+            var x=document.getElementById(a),
+                now=new Date().getTime(),
+                load_time=now - performance.timing.navigationStart;
+            if( 'addEventListener' in window ){
+              x.removeEventListener('load',siteOnline);
+              x.removeEventListener('error',siteOffline);
+            }
+            else
+            {
+              x.onerror=null;
+              x.onload=null;  
+            }
+            x.style.display='none';
+            latencies[b].textContent=load_time;
+            stat_ons[b].style.display="inline-block";
+            msgs[b].textContent="The website is online. Server is fully operational.";
+          },
+          siteOffline = function(a,b){
+            var x=document.getElementById(a);
+            if( 'addEventListener' in window ){
+              x.removeEventListener('load',siteOnline);
+              x.removeEventListener('error',siteOffline);
+            }
+            else
+            {
+              x.onerror=null;
+              x.onload=null;  
+            }
+            x.style.display="none";
+            stat_offs[b].style.display="inline-block";
+            msgs[b].textContent="The website is offline. Server is down for urgent maintenance.";
+          },
+          strEvent  = function( etype ){
+                        return ( 'addEventListener' in window ) ?
+                              etype :
+                                'on'+etype;
+                      };
+              
+      while(i--){
+        imgs[i] [listenFor] ( strEvent( 'load' ) , siteOnline( imgs[i].id, i ) );
+        imgs[i] [listenFor] ( strEvent( 'error' ) , siteOffline( imgs[i].id, i ) );
+        imgs[i].src = imgs[i].getAttribute( 'data-src' );
+        imgs[i].removeAttribute( 'data-src' );
       }
-      window.site_online=site_online;
-      function site_offline(a,b){
-        var x=document.getElementById(a);
-        x.onerror=null;
-        x.onload=null;
-        x.style.display="none";
-        document.querySelectorAll(".status-offline")[b].style.display="inline-block";
-        document.querySelectorAll(".message")[b].textContent="The website is offline. Server is down for urgent maintenance.";
-      }
-      window.site_offline=site_offline;
     }());
     </script>
     <main class="page">
@@ -78,7 +107,7 @@
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
-          <img src="https://amdouglas.com/assets/gif/iWrVv3m.gif?0i2re3id" id="amd" alt="Loader" onload="site_online(this.id,0);" onerror="site_offline(this.id,0);">
+          <img data-src="https://amdouglas.com/assets/gif/iWrVv3m.gif?0i2re3id" id="amd" alt="Loader">
           <span class="status-online"></span>
           <span class="status-offline"></span>
         </div>
@@ -99,7 +128,7 @@
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
-          <img src="https://indredouglas.me/assets/img/iWrVv3m.gif?i0e2h4f8355" id="ijd" alt="Loader" onload="site_online(this.id,1);" onerror="site_offline(this.id,1);">
+          <img data-src="https://indredouglas.me/assets/img/iWrVv3m.gif?i0e2h4f8355" id="ijd" alt="Loader">
           <span class="status-online"></span>
           <span class="status-offline"></span>
         </div>
@@ -120,7 +149,7 @@
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
-          <img src="http://robomonkey.org/uploads/logo.png?iwnd83u23" id="rob" alt="Loader" onload="site_online(this.id,2);" onerror="site_offline(this.id,2);">
+          <img data-src="http://robomonkey.org/uploads/logo.png?iwnd83u23" id="rob" alt="Loader">
           <span class="status-online"></span>
           <span class="status-offline"></span>
         </div>
@@ -141,7 +170,7 @@
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
-          <img src="http://www.hil.org.uk/wp-content/uploads/2016/01/base.gif?8j9eu9r423a" id="hil" alt="Loader" onload="site_online(this.id,3);" onerror="site_offline(this.id,3);">
+          <img data-src="http://www.hil.org.uk/wp-content/uploads/2016/01/base.gif?8j9eu9r423a" id="hil" alt="Loader">
           <span class="status-online"></span>
           <span class="status-offline"></span>
         </div>

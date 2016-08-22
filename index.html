@@ -46,7 +46,7 @@
         var imgs = document.getElementsByTagName( 'img' ),
             latencies = document.querySelectorAll( '.latency' ),
             identifiers = document.querySelectorAll( '.cell-top' ),
-            stat = document.querySelector( '.cell-status > span' ),
+            statuses = document.querySelectorAll( '.cell-status > span' ),
             msgs = document.querySelectorAll( '.message' ),
             x = document.getElementById( a ),
             now = new Date().getTime(),
@@ -59,13 +59,13 @@
         identifiers[b].style.transitionDelay = load_time + "ms";
         identifiers[b].className = "cell cell-top identifier-online";
         latencies[b].textContent = load_time;
-        stat.className = 'status-online';
+        statuses[b].className = 'status-online';
         msgs[b].textContent = 'The website is online. Server is fully operational.';
       };
       
       window.siteOffline=function(a,b){
         var imgs = document.getElementsByTagName( 'img' ),
-            stat = document.querySelector('.cell-status > span'),
+            statuses = document.querySelectorAll('.cell-status > span'),
             identifiers = document.querySelectorAll( '.cell-top' ),
             msgs = document.querySelectorAll('.message'),
             x = document.getElementById( a );
@@ -76,7 +76,7 @@
         
         identifiers[b].style.transitionDelay = "200ms";
         identifiers[b].className = "cell cell-top identifier-offline";
-        stat.className = 'status-offline';
+        statuses[b].className = 'status-offline';
         msgs[b].textContent = 'The website is offline. Server is down for urgent maintenance.';
       }
     }());

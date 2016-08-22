@@ -65,6 +65,8 @@
         stat_offs[b].style.display = "inline-block";
         msgs[b].textContent = "The website is offline. Server is down for urgent maintenance.";
       }
+      window.siteOnline=siteOnline;
+      window.siteOffline=siteOffline;
     }());
     </script>
     <main class="page">

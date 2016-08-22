@@ -29,69 +29,13 @@
     </style>
   </head>
   <body>
+    <style scoped>
     <!--/*--><![CDATA[/*><!--*/
     @font-face{font-family:"SofiaPro";src:url(https://cdn.rawgit.com/wnda/morrigan/master/assets/fonts/SofiaProLight.woff2) format('woff2'),url(https://cdn.rawgit.com/wnda/morrigan/master/assets/fonts/SofiaProLight.woff) format('woff');font-weight:400;font-style:normal;font-variant:normal;font-display:fallback}
     @font-face{font-family:"SofiaPro";src:url(https://cdn.rawgit.com/wnda/morrigan/master/assets/fonts/SofiaProBold.woff2) format('woff2'),url(https://cdn.rawgit.com/wnda/morrigan/master/assets/fonts/SofiaProBold.woff) format('woff');font-weight:700;font-style:normal;font-variant:normal;font-display:fallback}
     html,body,*,:before,:after{font-family:"SofiaPro",Roboto,-apple-system,sans-serif}
     /*]]>*/-->
-    <script>
-    (function(){
-      "use strict";
-      var imgs      = document.getElementsByTagName( 'img' ),
-          latencies = document.querySelectorAll('.latency'),
-          stat_ons  = document.querySelectorAll('.status-online'),
-          stat_offs = document.querySelectorAll(".status-offline"),
-          msgs      = document.querySelectorAll('.message'),
-          i         = imgs.length,
-          listenFor = ( 'addEventListener' in window ) ? 'addEventListener' :
-                              ( ( 'attachEvent' in window ) ? 'attachEvent' : null ),
-          siteOnline = function(a,b){
-            var x=document.getElementById(a),
-                now=new Date().getTime(),
-                load_time=now - performance.timing.navigationStart;
-            if( 'addEventListener' in window ){
-              x.removeEventListener('load',siteOnline);
-              x.removeEventListener('error',siteOffline);
-            }
-            else
-            {
-              x.onerror=null;
-              x.onload=null;  
-            }
-            x.style.display='none';
-            latencies[b].textContent=load_time;
-            stat_ons[b].style.display="inline-block";
-            msgs[b].textContent="The website is online. Server is fully operational.";
-          },
-          siteOffline = function(a,b){
-            var x=document.getElementById(a);
-            if( 'addEventListener' in window ){
-              x.removeEventListener('load',siteOnline);
-              x.removeEventListener('error',siteOffline);
-            }
-            else
-            {
-              x.onerror=null;
-              x.onload=null;  
-            }
-            x.style.display="none";
-            stat_offs[b].style.display="inline-block";
-            msgs[b].textContent="The website is offline. Server is down for urgent maintenance.";
-          },
-          strEvent  = function( etype ){
-                        return ( 'addEventListener' in window ) ?
-                              etype :
-                                'on'+etype;
-                      };
-              
-      while(i--){
-        imgs[i] [listenFor] ( strEvent( 'load' ) , siteOnline( imgs[i].id, i ) );
-        imgs[i] [listenFor] ( strEvent( 'error' ) , siteOffline( imgs[i].id, i ) );
-        imgs[i].src = imgs[i].getAttribute( 'data-src' );
-        imgs[i].removeAttribute( 'data-src' );
-      }
-    }());
-    </script>
+    </style>
     <main class="page">
       <div class="grid">
         <div class="cell cell-sm-12 cell-md-12 cell-lg-12">
@@ -178,5 +122,63 @@
         </div>
       </div>
     </main>
+    <script>
+    (function(){
+      "use strict";
+      var imgs      = document.getElementsByTagName( 'img' ),
+          latencies = document.querySelectorAll('.latency'),
+          stat_ons  = document.querySelectorAll('.status-online'),
+          stat_offs = document.querySelectorAll(".status-offline"),
+          msgs      = document.querySelectorAll('.message'),
+          i         = imgs.length,
+          listenFor = ( 'addEventListener' in window ) ? 'addEventListener' :
+                              ( ( 'attachEvent' in window ) ? 'attachEvent' : null ),
+          siteOnline = function(a,b){
+            var x=document.getElementById(a),
+                now=new Date().getTime(),
+                load_time=now - performance.timing.navigationStart;
+            if( 'addEventListener' in window ){
+              x.removeEventListener('load',siteOnline);
+              x.removeEventListener('error',siteOffline);
+            }
+            else
+            {
+              x.onerror=null;
+              x.onload=null;  
+            }
+            x.style.display='none';
+            latencies[b].textContent=load_time;
+            stat_ons[b].style.display="inline-block";
+            msgs[b].textContent="The website is online. Server is fully operational.";
+          },
+          siteOffline = function(a,b){
+            var x=document.getElementById(a);
+            if( 'addEventListener' in window ){
+              x.removeEventListener('load',siteOnline);
+              x.removeEventListener('error',siteOffline);
+            }
+            else
+            {
+              x.onerror=null;
+              x.onload=null;  
+            }
+            x.style.display="none";
+            stat_offs[b].style.display="inline-block";
+            msgs[b].textContent="The website is offline. Server is down for urgent maintenance.";
+          },
+          strEvent  = function( etype ){
+                        return ( 'addEventListener' in window ) ?
+                              etype :
+                                'on'+etype;
+                      };
+              
+      while(i--){
+        imgs[i] [listenFor] ( strEvent( 'load' ) , siteOnline( imgs[i].id, i ) );
+        imgs[i] [listenFor] ( strEvent( 'error' ) , siteOffline( imgs[i].id, i ) );
+        imgs[i].src = imgs[i].getAttribute( 'data-src' );
+        imgs[i].removeAttribute( 'data-src' );
+      }
+    }());
+    </script>
   </body>
 </html>

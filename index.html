@@ -35,14 +35,14 @@
     <!--/*--><![CDATA[/*><!--*/
     @font-face{font-family:"SofiaPro";src:url(https://cdn.rawgit.com/wnda/morrigan/master/assets/fonts/SofiaProLight.woff2) format('woff2'),url(https://cdn.rawgit.com/wnda/morrigan/master/assets/fonts/SofiaProLight.woff) format('woff');font-weight:400;font-style:normal;font-variant:normal;font-display:fallback}
     @font-face{font-family:"SofiaPro";src:url(https://cdn.rawgit.com/wnda/morrigan/master/assets/fonts/SofiaProBold.woff2) format('woff2'),url(https://cdn.rawgit.com/wnda/morrigan/master/assets/fonts/SofiaProBold.woff) format('woff');font-weight:700;font-style:normal;font-variant:normal;font-display:fallback}
-    html,body,*,:before,:after{font-family:"SofiaPro",Roboto,-apple-system,sans-serif}
+    html,body,*,:before,:after{font-family:'SofiaPro',Roboto,-apple-system,sans-serif}
     /*]]>*/-->
     </style>
     <script>
     (function(){
       "use strict";
           
-      window.siteOnline = function(a,b){
+      window.siteOnline = function ( a, b ){
         var imgs = document.getElementsByTagName( 'img' ),
             latencies = document.querySelectorAll( '.latency' ),
             identifiers = document.querySelectorAll( '.cell-top' ),
@@ -56,25 +56,25 @@
         x.onload = null;  
         x.style.display = 'none';
         
-        identifiers[b].style.transitionDelay = load_time + "ms";
+        // identifiers[b].style.transitionDelay = load_time + "ms";
         identifiers[b].className = "cell cell-top identifier-online";
         latencies[b].textContent = load_time;
         statuses[b].className = 'status-online';
         msgs[b].textContent = 'The website is online. Server is fully operational.';
       };
       
-      window.siteOffline=function(a,b){
+      window.siteOffline = function( a, b ){
         var imgs = document.getElementsByTagName( 'img' ),
             statuses = document.querySelectorAll('.cell-status > span'),
             identifiers = document.querySelectorAll( '.cell-top' ),
-            msgs = document.querySelectorAll('.message'),
+            msgs = document.querySelectorAll( '.message' ),
             x = document.getElementById( a );
             
         x.onerror = null;
         x.onload = null;  
         x.style.display = 'none';
         
-        identifiers[b].style.transitionDelay = "200ms";
+        // identifiers[b].style.transitionDelay = "200ms";
         identifiers[b].className = "cell cell-top identifier-offline";
         statuses[b].className = 'status-offline';
         msgs[b].textContent = 'The website is offline. Server is down for urgent maintenance.';

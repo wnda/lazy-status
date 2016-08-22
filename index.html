@@ -35,6 +35,38 @@
     html,body,*,:before,:after{font-family:"SofiaPro",Roboto,-apple-system,sans-serif}
     /*]]>*/-->
     </style>
+    <script>
+    (function(){
+      "use strict";
+      
+      var imgs      = document.getElementsByTagName( 'img' ),
+          latencies = document.querySelectorAll('.latency'),
+          stat_ons  = document.querySelectorAll('.status-online'),
+          stat_offs = document.querySelectorAll('.status-offline'),
+          msgs      = document.querySelectorAll('.message');
+          
+      function siteOnline(a,b){
+        var x = document.getElementById( a ),
+            now = new Date().getTime(),
+            load_time = now - performance.timing.navigationStart;
+        x.onerror = null;
+        x.onload = null;  
+        x.style.display = 'none';
+        latencies[b].textContent = load_time;
+        stat_ons[b].style.display = "inline-block";
+        msgs[b].textContent = "The website is online. Server is fully operational.";
+      }
+      
+      function siteOffline(a,b){
+        var x = document.getElementById( a );
+        x.onerror = null;
+        x.onload = null;  
+        x.style.display = "none";
+        stat_offs[b].style.display = "inline-block";
+        msgs[b].textContent = "The website is offline. Server is down for urgent maintenance.";
+      }
+    }());
+    </script>
     <main class="page">
       <div class="grid">
         <div class="cell cell-sm-12 cell-md-12 cell-lg-12">
@@ -52,7 +84,7 @@
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
-          <img src="https://amdouglas.com/assets/gif/iWrVv3m.gif?0i2re3id" id="amd" alt="Loader">
+          <img src="https://amdouglas.com/assets/gif/iWrVv3m.gif?0i2re3id" id="amd" alt="Loader" onload="siteOnline(this.id,0);" onerror="siteOffline(this.id,0);">
           <span class="status-online"></span>
           <span class="status-offline"></span>
         </div>
@@ -73,7 +105,7 @@
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
-          <img src="https://indredouglas.me/assets/img/iWrVv3m.gif?i0e2h4f8355" id="ijd" alt="Loader">
+          <img src="https://indredouglas.me/assets/img/iWrVv3m.gif?i0e2h4f8355" id="ijd" alt="Loader" onload="siteOnline(this.id,1);" onerror="siteOffline(this.id,1);">
           <span class="status-online"></span>
           <span class="status-offline"></span>
         </div>
@@ -94,7 +126,7 @@
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
-          <img src="http://robomonkey.org/uploads/logo.png?iwnd83u23" id="rob" alt="Loader">
+          <img src="http://robomonkey.org/uploads/logo.png?iwnd83u23" id="rob" alt="Loader" onload="siteOnline(this.id,2);" onerror="siteOffline(this.id,2);">
           <span class="status-online"></span>
           <span class="status-offline"></span>
         </div>
@@ -115,50 +147,11 @@
           </p>
         </div>
         <div class="cell cell-sm-5 cell-md-5 cell-lg-5">
-          <img src="http://www.hil.org.uk/wp-content/uploads/2016/01/base.gif?8j9eu9r423a" id="hil" alt="Loader">
+          <img src="http://www.hil.org.uk/wp-content/uploads/2016/01/base.gif?8j9eu9r423a" id="hil" alt="Loader" onload="siteOnline(this.id,3);" onerror="siteOffline(this.id,3);">
           <span class="status-online"></span>
           <span class="status-offline"></span>
         </div>
       </div>
     </main>
-  <script>
-    (function(){
-      "use strict";
-      var imgs      = document.getElementsByTagName( 'img' ),
-          latencies = document.querySelectorAll('.latency'),
-          stat_ons  = document.querySelectorAll('.status-online'),
-          stat_offs = document.querySelectorAll('.status-offline'),
-          msgs      = document.querySelectorAll('.message'),
-          i         = imgs.length,
-          j         = 0,
-          siteOnline = function(a,b){
-            var x = document.getElementById( a ),
-                now = new Date().getTime(),
-                load_time = now - performance.timing.navigationStart;
-            x.onerror = null;
-            x.onload = null;  
-            x.style.display = 'none';
-            latencies[b].textContent = load_time;
-            stat_ons[b].style.display = "inline-block";
-            msgs[b].textContent = "The website is online. Server is fully operational.";
-          },
-          siteOffline = function(a,b){
-            var x = document.getElementById(a);
-            x.onerror = null;
-            x.onload = null;  
-            x.style.display = "none";
-            stat_offs[b].style.display = "inline-block";
-            msgs[b].textContent = "The website is offline. Server is down for urgent maintenance.";
-          };
-              
-      for(;i>j;j++)
-      {
-        imgs[j].onload = siteOnline( imgs[j].id, j );
-        imgs[j].onerror = siteOffline( imgs[j].id, j );
-        // imgs[i].src = imgs[i].getAttribute( 'data-src' );
-        // imgs[i].removeAttribute( 'data-src' );
-      }
-    }());
-    </script>
   </body>
 </html>

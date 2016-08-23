@@ -11,6 +11,7 @@
       *,:before,:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;border:0;vertical-align:baseline;-webkit-tap-highlight-color:transparent}
       details,main,summary{display:block}
       body{padding:8px;padding:.5rem;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2010%2010%22%3E%3Ccircle%20cx%3D%222.5%22%20cy%3D%222.5%22%20r%3D%222.5%22%20fill%3D%22%23607d8b%22/%3E%3C/svg%3E");background-size:2px auto;background-repeat:repeat}
+      h1,h2{font-size:1.5em;font-weight:700}
       a{color:inherit;cursor:pointer;text-decoration:none;display:block}
       img{height:1px;opacity:0;-webkit-transform:scale(0);-moz-transform:scale(0);-ms-transform:scale(0);-o-transform:scale(0);transform:scale(0);width:1px;position:absolute;right:900%;clip:rect(0,0,0,0);line-height:1px;font-size:1px}
       textarea{resize:vertical}
@@ -85,7 +86,6 @@
         x.onload = null;  
         x.style.display = 'none';
         
-        // identifiers[b].style.transitionDelay = load_time + "ms";
         identifiers[b].className = "cell cell-top identifier-online";
         latencies[b].textContent = load_time;
         statuses[b].className = 'status-online';
@@ -103,7 +103,6 @@
         x.onload = null;  
         x.style.display = 'none';
         
-        // identifiers[b].style.transitionDelay = "200ms";
         identifiers[b].className = "cell cell-top identifier-offline";
         statuses[b].className = 'status-offline';
         msgs[b].textContent = 'The website is offline. Server is down for urgent maintenance.';

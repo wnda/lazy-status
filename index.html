@@ -89,7 +89,7 @@
         identifiers[b].className = "cell cell-top identifier-online";
         latencies[b].textContent = load_time;
         statuses[b].className = 'status-online';
-        msgs[b].textContent = 'The website is online. Server is fully operational.';
+        msgs[b].textContent = 'The website is online and fully operational.';
       };
       
       window.siteOffline = function( a, b ){
@@ -105,7 +105,7 @@
         
         identifiers[b].className = "cell cell-top identifier-offline";
         statuses[b].className = 'status-offline';
-        msgs[b].textContent = 'The website is offline. Server is down for urgent maintenance.';
+        msgs[b].textContent = 'The website is offline, possibly for urgent maintenance.';
       }
     }());
     </script>

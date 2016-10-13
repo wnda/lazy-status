@@ -22,49 +22,40 @@
       .cell-legend>span{background-position:0px -288px}
       .cell-status>span.status-online{background-position:0px -432px}
       .cell-status>span.status-offline{background-position:0px -480px}
+      img{display:none;visibility:hidden;position:absolute;left:-9999em;height:0;width:0}
     </style>
   </head>
   <body>
     <script>
-    (function(){
-      "use strict";
-          
-      window.siteOnline = function ( a, b ){
-        var imgs = document.getElementsByTagName( 'img' ),
-            latencies = document.querySelectorAll( '.latency' ),
-            identifiers = document.querySelectorAll( '.cell-top' ),
-            statuses = document.querySelectorAll( '.cell-status > span' ),
-            msgs = document.querySelectorAll( '.message' ),
-            x = document.getElementById( a ),
-            now = new Date().getTime(),
-            load_time = now - performance.timing.navigationStart;
-        
-        x.onerror = null;
-        x.onload = null;  
-        x.style.display = 'none';
-        
-        latencies[b].textContent = load_time + 'ms';
-        identifiers[b].className = 'cell cell-top identifier-online';
-        statuses[b].className = 'status-online';
-        msgs[b].textContent = 'The website is online and fully operational.';
-      };
-      
-      window.siteOffline = function( a, b ){
-        var imgs = document.getElementsByTagName( 'img' ),
-            statuses = document.querySelectorAll('.cell-status > span'),
-            identifiers = document.querySelectorAll( '.cell-top' ),
-            msgs = document.querySelectorAll( '.message' ),
-            x = document.getElementById( a );
-            
-        x.onerror = null;
-        x.onload = null;  
-        x.style.display = 'none';
-        
-        identifiers[b].className = 'cell cell-top identifier-offline';
-        statuses[b].className = 'status-offline';
-        msgs[b].textContent = 'The website is offline, possibly for urgent maintenance.';
+    (function(win,doc){
+      var a = doc.querySelectorAll('.item-title'),
+          latencies = doc.querySelectorAll( '.latency' ),
+          identifiers = doc.querySelectorAll( '.cell-top' ),
+          statuses = doc.querySelectorAll( '.cell-status > span' ),
+          msgs = doc.querySelectorAll( '.message' ),
+          now = new Date().getTime(),
+          load_time = now - performance.timing.navigationStart;
+      for(var i = 0; i < a.length; ++i){
+        var url_bust = a[i].getAttribute('data-src')+'?v='+(new Date()).getTime();
+        testLoad( url_bust, i );
       }
-    }());
+      function testLoad(url, i){
+        var img = doc.createElement('img');
+        img.src = url;
+        img.onload = function(){
+          latencies[i].textContent = load_time + 'ms';
+          identifiers[i].className = 'cell cell-top identifier-online';
+          statuses[i].className = 'status-online';
+          msgs[i].textContent = 'The website is online and fully operational.';
+        };
+        img.onerror = function(){
+          identifiers[i].className = 'cell cell-top identifier-offline';
+          statuses[i].className = 'status-offline';
+          msgs[i].textContent = 'The website may be offline, possibly for maintenance.';
+        };
+        doc.body.appendChild(img);
+      }
+    })(window,window.document);      
     </script>
     <main class="page">
       <div class="grid">
@@ -98,7 +89,6 @@
               </p>
             </div>
             <div class="cell cell-sm-5 cell-md-5 cell-lg-5 cell-status">
-              <img src="http://getstorm.xyz/img/storm_wo.png?1g200r3p" id="stm" alt="Loader" onload="siteOnline(this.id,[].indexOf.call(document.getElementsByTagName('img'),this));" onerror="siteOffline(this.id,[].indexOf.call(document.getElementsByTagName('img'),this));">
               <span></span>
             </div>
           </div>
@@ -120,7 +110,6 @@
               </p>
             </div>
             <div class="cell cell-sm-5 cell-md-5 cell-lg-5 cell-status">
-              <img src="https://picuse.studio/img/4.jpg?h5kheof" id="pic" alt="Loader" onload="siteOnline(this.id,[].indexOf.call(document.getElementsByTagName('img'),this));" onerror="siteOffline(this.id,[].indexOf.call(document.getElementsByTagName('img'),this));">
               <span></span>
             </div>
           </div>
@@ -142,7 +131,6 @@
               </p>
             </div>
             <div class="cell cell-sm-5 cell-md-5 cell-lg-5 cell-status">
-              <img src="https://amdouglas.com/assets/img/favicon-32x32.png?0ilre3id" id="amd" alt="Loader" onload="siteOnline(this.id,[].indexOf.call(document.getElementsByTagName('img'),this));" onerror="siteOffline(this.id,[].indexOf.call(document.getElementsByTagName('img'),this));">
               <span></span>
             </div>
           </div>
@@ -164,7 +152,6 @@
               </p>
             </div>
             <div class="cell cell-sm-5 cell-md-5 cell-lg-5 cell-status">
-              <img src="https://indredouglas.me/assets/img/iWrVv3m.gif?i0e2h4f8355" id="ijd" alt="Loader" onload="siteOnline(this.id,[].indexOf.call(document.getElementsByTagName('img'),this));" onerror="siteOffline(this.id,[].indexOf.call(document.getElementsByTagName('img'),this));">
               <span></span>
             </div>
           </div>
@@ -186,7 +173,6 @@
               </p>
             </div>
             <div class="cell cell-sm-5 cell-md-5 cell-lg-5 cell-status">
-              <img src="http://robomonkey.org/uploads/logo.png?iwnd83u23" id="rob" alt="Loader" onload="siteOnline(this.id,[].indexOf.call(document.getElementsByTagName('img'),this));" onerror="siteOffline(this.id,[].indexOf.call(document.getElementsByTagName('img'),this));">
               <span></span>
             </div>
           </div>
@@ -208,16 +194,11 @@
               </p>
             </div>
             <div class="cell cell-sm-5 cell-md-5 cell-lg-5 cell-status">
-              <img src="http://www.hil.org.uk/wp-content/uploads/2016/01/base.gif?8j9eu9r423a" id="hil" alt="Loader" onload="siteOnline(this.id,[].indexOf.call(document.getElementsByTagName('img'),this));" onerror="siteOffline(this.id,[].indexOf.call(document.getElementsByTagName('img'),this));">
               <span></span>
             </div>
           </div>
         </div>
       </div>
-      <br>
-      <script>
-        ;(function(){var a=document.createElement('link');a.rel='stylesheet';a.href='https://status.amdouglas.com/fonts/fonts.css';a.type='text/css';(document.body||document.getElementsByTagName('body')[0]).appendChild(a);})();
-      </script>
     </main>
   </body>
 </html>

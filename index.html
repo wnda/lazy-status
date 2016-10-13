@@ -26,37 +26,6 @@
     </style>
   </head>
   <body>
-    <script>
-    (function(win,doc){
-      var a = doc.querySelectorAll('.item-title'),
-          latencies = doc.querySelectorAll( '.latency' ),
-          identifiers = doc.querySelectorAll( '.cell-top' ),
-          statuses = doc.querySelectorAll( '.cell-status > span' ),
-          msgs = doc.querySelectorAll( '.message' ),
-          now = new Date().getTime(),
-          load_time = now - performance.timing.navigationStart;
-      for(var i = 0; i < a.length; ++i){
-        var url_bust = a[i].getAttribute('data-src')+'?v='+(new Date()).getTime();
-        testLoad( url_bust, i );
-      }
-      function testLoad(url, i){
-        var img = new Image();
-        img.src = url;
-        img.onload = function(){
-          latencies[i].textContent = load_time + 'ms';
-          identifiers[i].className = 'cell cell-top identifier-online';
-          statuses[i].className = 'status-online';
-          msgs[i].textContent = 'The website is online and fully operational.';
-        };
-        img.onerror = function(){
-          identifiers[i].className = 'cell cell-top identifier-offline';
-          statuses[i].className = 'status-offline';
-          msgs[i].textContent = 'The website may be offline, possibly for maintenance.';
-        };
-        doc.body.appendChild(img);
-      }
-    })(window,window.document);      
-    </script>
     <main class="page">
       <div class="grid">
         <div class="cell cell-title">
@@ -200,5 +169,36 @@
         </div>
       </div>
     </main>
+    <script>
+      (function(win,doc){
+        var a = doc.querySelectorAll('.item-title'),
+            latencies = doc.querySelectorAll( '.latency' ),
+            identifiers = doc.querySelectorAll( '.cell-top' ),
+            statuses = doc.querySelectorAll( '.cell-status > span' ),
+            msgs = doc.querySelectorAll( '.message' ),
+            now = new Date().getTime(),
+            load_time = now - win.performance.timing.navigationStart;
+        for(var i = 0; i < a.length; ++i){
+          var url_bust = a[i].getAttribute('data-src')+'?v='+(new Date()).getTime();
+          testLoad( url_bust, i );
+        }
+        function testLoad(url, i){
+          var img = new Image();
+          img.src = url;
+          img.onload = function(){
+            latencies[i].textContent = load_time + 'ms';
+            identifiers[i].className = 'cell cell-top identifier-online';
+            statuses[i].className = 'status-online';
+            msgs[i].textContent = 'The website is online and fully operational.';
+          };
+          img.onerror = function(){
+            identifiers[i].className = 'cell cell-top identifier-offline';
+            statuses[i].className = 'status-offline';
+            msgs[i].textContent = 'The website may be offline, possibly for maintenance.';
+          };
+          doc.body.appendChild(img);
+        }
+      })(window,window.document);      
+    </script>
   </body>
 </html>

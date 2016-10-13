@@ -40,7 +40,7 @@
         testLoad( url_bust, i );
       }
       function testLoad(url, i){
-        var img = doc.createElement('img');
+        var img = new Image();
         img.src = url;
         img.onload = function(){
           latencies[i].textContent = load_time + 'ms';

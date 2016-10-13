@@ -175,12 +175,15 @@
         
         for(var i = 0; i < a.length; ++i){
           var url_bust = a[i].getAttribute('data-src')+'?v='+(new Date()).getTime();
-          testLoad( url_bust, i );
+          testLoad( a[i].href, url_bust, i );
         }
         
-        function testLoad(url, i){
-          var now = new Date().getTime();
+        function testLoad(site, url, i){
+          var today = new Date();
+          var now = today.getTime();
           var load_time = now - win.performance.timing.navigationStart;
+          var report_date = today.getDate() + '.' + (today.getMonth+1) + '.' + today.getFullYear();
+          var report_time = (today.getHours() < 10 ? '0' + today.getHours() : today.getHours()) + ':' + (today.getMinutes() < 10 ? '0'+today.getMinutes() : today.getMinutes()) + ':' + (today.getSeconds() < 10 ? '0' + today.getSeconds(): today.getSeconds()).
           var img = new Image();
           
           img.onload = function(){
@@ -194,11 +197,26 @@
             identifiers[i].className = 'cell cell-top identifier-offline';
             statuses[i].className = 'status-offline';
             msgs[i].textContent = 'The website may be offline, possibly for maintenance.';
+            sendAlert(site,report_date,report_time);
           };
           
           img.src = url;
           
           doc.body.appendChild(img);
+        }
+        
+        function sendAlert(site,report_date,report_time){
+          var xhr = new XMLHttpRequest();
+          var msg = 'name=status.amdouglas.com&email=status@amdouglas.com&text='+site+'was checked on '+report_date+' at '+report_time+' and indicated that it may be offline.&confirm=';
+          xhr.open('POST','https://amdouglas.com/mail/',true);
+          xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4){
+              if(xhr.status >= 200 && xhr.status < 300){
+                console.info('Error report sent');
+              }
+            }
+          };
+          xhr.send(msg);
         }
       })(window,window.document);      
     </script>

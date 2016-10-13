@@ -11,7 +11,17 @@
     </style>
   </head>
   <body>
-    <script>var css = document.createElement('link');css.rel='stylesheet';css.href='https://status.amdouglas.com/secondary.css';document.head.appendChild(css);</script>
+    <script>
+      loadCSS(['https://fonts.googleapis.com/css?family=Rubik:400,700','https://status.amdouglas.com/secondary.css']);
+      function loadCSS(urls){
+        for(var k = 0; k < urls.length; ++k){
+          var css = document.createElement('link');
+          css.rel='stylesheet';
+          css.href=urls[k];
+          document.head.appendChild(css);
+        }
+      }
+    </script>
     <main class="page">
       <div class="grid">
         <div class="cell cell-title">

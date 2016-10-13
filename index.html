@@ -212,9 +212,12 @@
           xhr.onreadystatechange = function(){
             if(xhr.readyState === 4){
               if(xhr.status >= 200 && xhr.status < 300){
-                console.info('Error report sent');
+                console.info('Error report sent: [' + msg + ' ]');
               }
             }
+          };
+          xhr.onerror=function(){
+            console.error('Error report NOT sent: [' + msg + ' ]');
           };
           xhr.send(msg);
         }

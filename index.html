@@ -205,12 +205,13 @@
             identifiers[i].className = 'cell cell-top identifier-offline';
             statuses[i].className = 'status-offline';
             msgs[i].textContent = 'The website may be offline, possibly for maintenance.';
-            sendAlert(site,report_date,report_time);
+            sendAlert(site,report_date, report_time);
           };
           
           img.src = url;
           
           doc.body.appendChild(img);
+          doc.body.removeChild(img);
         }
         
         function sendAlert(site,report_date,report_time){

@@ -193,8 +193,7 @@
           var img = new Image();
           
           img.onload = function(){          
-            var now = today.getTime();
-            var load_time = now - win.performance.timing.navigationStart;
+            var load_time = win.performance.now() - win.performance.timing.navigationStart;
             latencies[i].textContent = load_time + 'ms';
             identifiers[i].className = 'cell cell-top identifier-online';
             statuses[i].className = 'status-online';

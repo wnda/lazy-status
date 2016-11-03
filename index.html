@@ -167,6 +167,12 @@
     </main>
     <script>
       (function(win,doc){
+        if(!('performance' in win)){
+          throw new Error('performance not found in window');
+          console.error('window.performance is currently used \n Please use a modern browser.');
+          return;
+        }
+        
         var a = doc.querySelectorAll('.item-title');
         var latencies = doc.querySelectorAll( '.latency' );
         var identifiers = doc.querySelectorAll( '.cell-top' );
@@ -182,12 +188,12 @@
         
         function testLoad(site, url, i){
           var today = new Date();
-          var now = today.getTime();
           var report_date = today.getDate() + '.' + (today.getMonth+1) + '.' + today.getFullYear();
           var report_time = (today.getHours() < 10 ? '0' + today.getHours() : today.getHours()) + ':' + (today.getMinutes() < 10 ? '0'+today.getMinutes() : today.getMinutes()) + ':' + (today.getSeconds() < 10 ? '0' + today.getSeconds(): today.getSeconds());
           var img = new Image();
           
-          img.onload = function(){
+          img.onload = function(){          
+            var now = today.getTime();
             var load_time = now - win.performance.timing.navigationStart;
             latencies[i].textContent = load_time + 'ms';
             identifiers[i].className = 'cell cell-top identifier-online';

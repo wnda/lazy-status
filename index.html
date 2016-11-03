@@ -215,7 +215,7 @@
         function sendAlert(site,report_date,report_time){
           var xhr = new XMLHttpRequest();
           var msg = 'name=status.amdouglas.com&email=status@amdouglas.com&text='+site+'was checked on '+report_date+' at '+report_time+' and indicated that it may be offline.&confirm=';
-          xhr.open('POST','https://amdouglas.com/mail/',true);
+          xhr.open('POST','https://send.amdouglas.com/mail/',true);
           xhr.onreadystatechange = function(){
             if(xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300){
               console.info('Error report sent: [' + msg + ' ]');

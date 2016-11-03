@@ -9,16 +9,16 @@
     <style>
       html,body,:root{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-size:100%;line-height:1.27;font-family:Roboto,Helmet,Freesans,sans-serif;overflow-x:hidden;background:hsl(0,0%,100%);color:hsl(240,60%,6.9%);text-rendering:auto;-webkit-text-size-adjust:100%;-webkit-overflow-scrolling:touch;touch-action:manipulation;-webkit-font-smoothing:antialiased;-webkit-font-smoothing:subpixel-antialiased;-moz-osx-font-smoothing:grayscale;*zoom:1}html,body{min-height:100vh}*,:before,:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;border:0;vertical-align:baseline;-webkit-tap-highlight-color:transparent;-webkit-overflow-scrolling:touch;touch-action:manipulation}details,main,summary{display:block}main{max-width:992px;margin:0 auto}
     </style>
-    <script>
-      window.loadCSS=function loadCSS(urls){
+    <script> 
+      loadCSS(['https://status.amdouglas.com/secondary.css']);
+      function loadCSS(urls){
         for(var k = 0; k < urls.length; ++k){
           var css = document.createElement('link');
           css.rel='stylesheet';
           css.href=urls[k];
           document.head.appendChild(css);
         }
-      };
-      loadCSS(['https://status.amdouglas.com/secondary.css']);
+      }
     </script>
   </head>
   <body>
@@ -196,7 +196,7 @@
           img.onload = function(){          
             var load_time = (new Date().getTime()) - then;
             latencies[i].textContent = load_time + 'ms';
-            identifiers[i].className = 'cell cell-top identifier-online';
+            identifiers[i].className = load_time < 2000 ? 'cell cell-top identifier-online' : 'cell cell-top identifier-online warn';
             statuses[i].className = 'status-online';
             msgs[i].textContent = 'The website is online and fully operational.';
           };
@@ -216,7 +216,7 @@
         
         function sendAlert(site,report_date,report_time){
           var xhr = new XMLHttpRequest();
-          var msg = 'name=status.amdouglas.com&email=status@amdouglas.com&text='+site+'was checked on '+report_date+' at '+report_time+' and indicated that it may be offline.&confirm=';
+          var msg = 'name=status.amdouglas.com&email=status@amdouglas.com&text='+site+' was checked on '+report_date+' at '+report_time+' and indicated that it may be offline.&confirm=';
           xhr.open('POST','https://send.amdouglas.com/mail/',true);
           xhr.onreadystatechange = function(){
             if(xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300){

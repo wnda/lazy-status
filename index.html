@@ -188,12 +188,13 @@
         
         function testLoad(site, url, i){
           var today = new Date();
+          var then = today.getTime();
           var report_date = today.getDate() + '.' + (today.getMonth+1) + '.' + today.getFullYear();
           var report_time = (today.getHours() < 10 ? '0' + today.getHours() : today.getHours()) + ':' + (today.getMinutes() < 10 ? '0'+today.getMinutes() : today.getMinutes()) + ':' + (today.getSeconds() < 10 ? '0' + today.getSeconds(): today.getSeconds());
           var img = new Image();
           
           img.onload = function(){          
-            var load_time = (new Date().getTime()) - win.performance.timing.navigationStart;
+            var load_time = (new Date().getTime()) - then;
             latencies[i].textContent = load_time + 'ms';
             identifiers[i].className = 'cell cell-top identifier-online';
             statuses[i].className = 'status-online';
